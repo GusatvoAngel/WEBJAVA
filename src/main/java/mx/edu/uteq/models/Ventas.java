@@ -5,11 +5,16 @@
  */
 package mx.edu.uteq.models;
 
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.Data;
 
 /**
@@ -18,14 +23,23 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "persona")
+@Table(name = "venta")
 public class Ventas {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
-    public String nombres;
-    public String apellidos;
-    public String email;
-    public String telefono;
+    public Long idVta;
+    
+    @Column(name = "fecha_hr")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date ultModifica;
+    
+    @PrePersist
+    public void prePersist() {
+        ultModifica = new Date();
+    }
+    
+    public float totalPagado;
+    //Es foranea investegir como se relaciona
+    public Long idUsu;
 }

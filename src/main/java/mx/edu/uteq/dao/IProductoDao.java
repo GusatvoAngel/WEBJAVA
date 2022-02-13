@@ -5,10 +5,12 @@
  */
 package mx.edu.uteq.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import mx.edu.uteq.models.Producto;
 /**
  *
  * @author usuario
  */
-public interface IProductoDao {
+public interface IProductoDao extends JpaRepository<Producto, Long>  {
     
 }

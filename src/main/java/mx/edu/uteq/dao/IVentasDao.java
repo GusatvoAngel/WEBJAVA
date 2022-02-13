@@ -5,10 +5,12 @@
  */
 package mx.edu.uteq.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import mx.edu.uteq.models.Ventas;
 /**
  *
  * @author usuario
  */
-public interface IVentasDao {
+public interface IVentasDao extends JpaRepository<Ventas, Long>  {
     
 }

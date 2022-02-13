@@ -5,10 +5,12 @@
  */
 package mx.edu.uteq.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import mx.edu.uteq.models.Detvta;
 /**
  *
  * @author usuario
  */
-public interface IInventarioDao {
+public interface IDetvtaDao extends JpaRepository<Detvta, Long>  {
     
 }

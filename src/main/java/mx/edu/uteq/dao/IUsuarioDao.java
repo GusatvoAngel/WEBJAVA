@@ -5,10 +5,12 @@
  */
 package mx.edu.uteq.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import mx.edu.uteq.models.Usuario;
 /**
  *
  * @author usuario
  */
-public interface IUsuarioDao {
+public interface IUsuarioDao extends JpaRepository<Usuario, Long>  {
     
 }

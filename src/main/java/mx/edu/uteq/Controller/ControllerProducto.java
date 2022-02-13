@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ControllerProducto {
     
-   @RequestMapping("/")
+   @RequestMapping("producto/")
     public String page(Model model) {
         model.addAttribute("nombre", "Hola desde Controlador Inicio");
         return "index";

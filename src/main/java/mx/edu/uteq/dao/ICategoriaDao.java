@@ -5,10 +5,12 @@
  */
 package mx.edu.uteq.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import mx.edu.uteq.models.Catgoria;
 /**
  *
  * @author usuario
  */
-public interface ICategoriaDao {
+public interface ICategoriaDao extends JpaRepository<Catgoria, Long>  {
     
 }
