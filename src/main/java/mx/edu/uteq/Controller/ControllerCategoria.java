@@ -21,7 +21,7 @@ public class ControllerCategoria {
    @RequestMapping("categoria/")
     public String page(Model model) {
         model.addAttribute("nombre", "Hola desde Controlador Inicio");
-        return "index";
+        return "cliente/index";
     }
     
 }
