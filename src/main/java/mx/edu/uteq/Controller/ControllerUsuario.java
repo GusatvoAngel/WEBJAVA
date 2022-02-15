@@ -58,6 +58,6 @@ public class ControllerUsuario {
     }
      @GetMapping("admin/")
     public String pageAdmin(Model model) {
-        return "admin/table-datatable";
+        return "auth-register";
     }
 }
