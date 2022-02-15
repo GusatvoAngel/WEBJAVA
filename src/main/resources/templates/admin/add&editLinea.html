@@ -1,0 +1,71 @@
+<?php defined('BASEPATH') or exit('No direct script access allowed');
+?>
+<div id="main">
+    <header class="mb-3"><a href="#" class="burger-btn d-block d-xl-none"><i class="bi bi-justify fs-3"></i> </a> </header>
+    <div class="page-content">
+        <section class="row mb-2">
+            <div class="col-12 col-lg-12">
+                <h1 class="text-c-black f-w-600 text-center text-dark"><?php echo $titulo; ?></h1>
+                <div class="py-1 bg-dark"></div>
+                <div class="row">
+                    <!-- card1 start -->
+                    <div class="col-md-12 col-xl-12">
+                        <div class="card widget-card-1">
+                            <div class="card-block-small">
+                                <i class="icofont icofont-list bg-c-blue card1-icon"></i>
+                                <div class="text-left mt-3">
+                                    <form action="<?php echo isset($url) ? $url : base_url() . "index.php/comunidad/agregarComunidad" ?>" method="post">
+                                        <?php
+                                        // Para cuando se edita
+                                        if (isset($IDAccioAnterior))
+                                            echo "<input type='text' hidden name='IDAccioAnterior' value='$IDAccioAnterior'>";
+                                        echo "<input type='text' hidden name='descAnterior' value='$descAnterior'>";
+                                        echo "<input type='text' hidden name='estatus' value='$estatus'>";
+                                        ?>
+                                        <div class="form-row mt-3">
+                                            <div class="form-group has-icon-left col-md-6">
+                                                <label class="text-dark" for="desc_accion"> Nombre de la Linea de accion</label>
+                                                <div class="position-relative">
+                                                    <input type="text" name="desc_accion" class="form-control" value="<?php echo set_value("desc_accion", isset($desc_accion) ? $desc_accion : ""); ?>">
+                                                    <div class="form-control-icon">
+                                                        <i class="fas fa-chart-line"></i>
+                                                    </div>
+                                                </div>
+                                                <small class="text-danger"><?php echo form_error("desc_accion"); ?></small>
+                                            </div>
+                                            <div class="form-group has-icon-left col-md-6">
+                                                <label class="text-dark" for="status">Estatus</label>
+                                                <div class="position-relative">
+                                                    <select name="estatus" class="custom-select form-control" id="status" required>
+                                                        <option selected disabled value="">Elige el estatus</option>
+                                                        <option value="0">Desactivado</option>
+                                                        <option value="1" selected>Activado</option>
+                                                    </select>
+                                                    <div class="form-control-icon">
+                                                        <i class="fas fa-toggle-off"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <small class="text-danger"><?php echo $error; ?></small> <br>
+                                        <button type="submit" class="form-group btn " style="background-color: #fcca46;"><?php echo $titulo; ?></button>
+                                        <button type="button" class="form-group btn btn-light text-dark" style="background-color: #619b8a;" onClick="history.back();">Cancelar</button>
+                                    </form>
+                                    <span class="f-left m-t-10 text-muted">
+                                        <i class="text-c-blue f-16 icofont icofont-warning m-r-10"></i>Recuerda llenar todos los campos
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- card1 end -->
+
+                </div>
+                <br>
+                <?php if (isset($paginacion)) echo $paginacion; ?>
+            </div>
+        </section>
+    </div>
+</div>
+
+</div>

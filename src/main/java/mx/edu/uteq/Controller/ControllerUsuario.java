@@ -17,11 +17,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class ControllerUsuario {
-    
-   @RequestMapping("/")
+
+    @RequestMapping("usuario/")
     public String page(Model model) {
         model.addAttribute("nombre", "Hola desde Controlador Inicio");
-        return "index";
+        return "cliente/index";
     }
-    
+
+    @GetMapping("usuario/about.html")
+    public String about(Model model) {
+        return "cliente/about";
+    }
+ @GetMapping("usuario/service.html")
+    public String service(Model model) {
+        return "cliente/service";
+    }
+    @GetMapping("usuario/menu.html")
+    public String menu(Model model) {
+        return "cliente/menu";
+    }
+     @GetMapping("usuario/booking.html")
+    public String booking(Model model) {
+        return "cliente/booking.html";
+    }
+     @GetMapping("usuario/team.html")
+    public String team(Model model) {
+        return "cliente/team";
+    }
+     @GetMapping("usuario/testimonial.html")
+    public String testimonial(Model model) {
+        return "cliente/testimonial";
+    }
+     @GetMapping("usuario/contact.html")
+    public String contact(Model model) {
+        return "cliente/contact";
+    }
+     @GetMapping("usuario/index.html")
+    public String index(Model model) {
+        return "cliente/index";
+    }
+     @GetMapping("admin/")
+    public String pageAdmin(Model model) {
+        return "admin/table-datatable";
+    }
 }
