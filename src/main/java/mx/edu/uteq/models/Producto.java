@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -23,10 +25,12 @@ public class Producto {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long idProd;
-    public String nomProd;
-    public float costoProd;
-    public float precioProd;
-    public int cantidadProd;
-    public Long idCat;
+    public long id_prod;
+    public String nom_prod;
+    public float costo_prod;
+    public float precio_prod;
+    public int cantidad_prod;
+    @ManyToOne(optional=false)
+    @JoinColumn(name="id_cat")
+    public Categoria id_cat;
 }

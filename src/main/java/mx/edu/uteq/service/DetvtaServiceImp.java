@@ -6,8 +6,8 @@
 package mx.edu.uteq.service;
 
 import java.util.List;
-import mx.edu.uteq.dao.IProductoDao;
-import mx.edu.uteq.models.Producto;
+import mx.edu.uteq.dao.IDetvtaDao;
+import mx.edu.uteq.models.Detvta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,33 +17,35 @@ import org.springframework.transaction.annotation.Transactional;
  * @author usuario
  */
 @Service
-public class ProductoServiceImp implements IProductoService{
-
-    @Autowired
-    private IProductoDao productodao;
-    
+public class DetvtaServiceImp implements IDetvtaService{
+     @Autowired
+    private IDetvtaDao detvtadao;
+     
     @Override
     @Transactional(readOnly = true)
-    public List<Producto> listarProducto() {
-        return productodao.findAll();
+    public List<Detvta> listarDetvta() {
+         return detvtadao.findAll();
     }
 
     @Override
     @Transactional
-    public void guardar(Producto producto) {
-         productodao.save(producto);
+    public void guardar(Detvta detvta) {
+        detvtadao.save(detvta);
     }
 
     @Override
     @Transactional
-    public void eliminar(Producto producto) {
-        productodao.delete(producto);
+    public void eliminar(Detvta detvta) {
+        detvtadao.delete(detvta);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Producto encontrarProducto(Producto producto) {
-        return productodao.findById(producto.getId_prod()).orElse(null);
+    public Detvta encontrarDetvta(Detvta detvta) {
+        return detvtadao.findById(detvta.getId_dv()).orElse(null);
+        
     }
+
+
     
 }

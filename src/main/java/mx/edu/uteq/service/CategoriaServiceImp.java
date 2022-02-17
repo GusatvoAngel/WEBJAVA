@@ -6,8 +6,8 @@
 package mx.edu.uteq.service;
 
 import java.util.List;
-import mx.edu.uteq.dao.IProductoDao;
-import mx.edu.uteq.models.Producto;
+import mx.edu.uteq.dao.ICategoriaDao;
+import mx.edu.uteq.models.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,33 +17,32 @@ import org.springframework.transaction.annotation.Transactional;
  * @author usuario
  */
 @Service
-public class ProductoServiceImp implements IProductoService{
+public class CategoriaServiceImp implements ICategoriaService{
 
     @Autowired
-    private IProductoDao productodao;
+    private ICategoriaDao categoriadao;
     
     @Override
     @Transactional(readOnly = true)
-    public List<Producto> listarProducto() {
-        return productodao.findAll();
+    public List<Categoria> listarCategoria() {
+        return categoriadao.findAll();
     }
 
     @Override
     @Transactional
-    public void guardar(Producto producto) {
-         productodao.save(producto);
+    public void guardar(Categoria categoria) {
+          categoriadao.save(categoria);
     }
 
     @Override
-    @Transactional
-    public void eliminar(Producto producto) {
-        productodao.delete(producto);
+    public void eliminar(Categoria categoria) {
+         categoriadao.delete(categoria);
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public Producto encontrarProducto(Producto producto) {
-        return productodao.findById(producto.getId_prod()).orElse(null);
+    public Categoria encontrarCategoria(Categoria categoria) {
+      return categoriadao.findById(categoria.getId_cat()).orElse(null);
     }
+
     
 }

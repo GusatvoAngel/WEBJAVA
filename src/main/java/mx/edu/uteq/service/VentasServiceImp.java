@@ -6,8 +6,8 @@
 package mx.edu.uteq.service;
 
 import java.util.List;
-import mx.edu.uteq.dao.IProductoDao;
-import mx.edu.uteq.models.Producto;
+import mx.edu.uteq.dao.IVentasDao;
+import mx.edu.uteq.models.Ventas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,33 +17,34 @@ import org.springframework.transaction.annotation.Transactional;
  * @author usuario
  */
 @Service
-public class ProductoServiceImp implements IProductoService{
+public class VentasServiceImp implements IVentasService{
 
     @Autowired
-    private IProductoDao productodao;
+    private IVentasDao ventasdao;
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Ventas> listarVentas() {
+        return ventasdao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void guardar(Ventas ventas) {
+         ventasdao.save(ventas);
+    }
+
+    @Override
+    @Transactional
+    public void eliminar(Ventas ventas) {
+        ventasdao.delete(ventas);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Ventas encontrarVentas(Ventas ventas) {
+        return ventasdao.findById(ventas.getId_vta()).orElse(null);
+    }
     
-    @Override
-    @Transactional(readOnly = true)
-    public List<Producto> listarProducto() {
-        return productodao.findAll();
-    }
-
-    @Override
-    @Transactional
-    public void guardar(Producto producto) {
-         productodao.save(producto);
-    }
-
-    @Override
-    @Transactional
-    public void eliminar(Producto producto) {
-        productodao.delete(producto);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Producto encontrarProducto(Producto producto) {
-        return productodao.findById(producto.getId_prod()).orElse(null);
-    }
     
 }

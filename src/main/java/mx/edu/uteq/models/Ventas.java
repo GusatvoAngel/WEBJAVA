@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -28,18 +30,21 @@ public class Ventas {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long idVta;
+    public long id_vta;
     
     @Column(name = "fecha_hr")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date ultModifica;
+    private Date fecha_hr;
     
     @PrePersist
     public void prePersist() {
-        ultModifica = new Date();
+        fecha_hr = new Date();
     }
     
-    public float totalPagado;
+    public float total_pagado;
+
     //Es foranea investegir como se relaciona
-    public Long idUsu;
+    @ManyToOne(optional=false)
+    @JoinColumn(name="id_usu")
+    public Usuario id_usu;
 }
