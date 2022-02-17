@@ -23,8 +23,11 @@ public class Usuario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long idUsu;
-    public String nomUsu;
+    public long id_usu;
+    public String nom_usu;
     public String pass;
-    public String tipoUsu;
+    public String tipo_usu;
+  // @OneToMany(cascade = CascadeType.ALL)
+   // @JoinColumn(name = "id_vta")
+   // private List<Ventas> catalogoProductoList;
 }

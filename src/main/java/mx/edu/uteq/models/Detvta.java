@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -23,8 +25,12 @@ public class Detvta {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long idDv;
-    public Long idVta;
-    public Long idProd;
-    public int cant;
+    public long id_dv;
+    @ManyToOne(optional=false)
+    @JoinColumn(name="id_vta")
+    public Ventas id_vta;
+    @ManyToOne(optional=false)
+    @JoinColumn(name="id_prod")
+    public Producto id_prod;
+    public int cant_pdin;
 }

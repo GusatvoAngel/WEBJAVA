@@ -6,8 +6,8 @@
 package mx.edu.uteq.service;
 
 import java.util.List;
-import mx.edu.uteq.dao.IProductoDao;
-import mx.edu.uteq.models.Producto;
+import mx.edu.uteq.dao.IUsuarioDao;
+import mx.edu.uteq.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,33 +17,34 @@ import org.springframework.transaction.annotation.Transactional;
  * @author usuario
  */
 @Service
-public class ProductoServiceImp implements IProductoService{
+public class UsuarioServiceImp implements IUsuarioService {
 
     @Autowired
-    private IProductoDao productodao;
-    
+    private IUsuarioDao usuariodao;
+
     @Override
     @Transactional(readOnly = true)
-    public List<Producto> listarProducto() {
-        return productodao.findAll();
+    public List<Usuario> listarUsuario() {
+        return usuariodao.findAll();
     }
 
     @Override
     @Transactional
-    public void guardar(Producto producto) {
-         productodao.save(producto);
+    public void guardar(Usuario usuario) {
+        usuariodao.save(usuario);
     }
 
     @Override
     @Transactional
-    public void eliminar(Producto producto) {
-        productodao.delete(producto);
+    public void eliminar(Usuario usuario) {
+        usuariodao.delete(usuario);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Producto encontrarProducto(Producto producto) {
-        return productodao.findById(producto.getId_prod()).orElse(null);
+    public Usuario encontrarUsuario(Usuario usuario) {
+        return usuariodao.findById(usuario.getId_usu()).orElse(null);
+
     }
-    
+
 }
