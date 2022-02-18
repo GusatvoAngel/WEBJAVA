@@ -25,7 +25,8 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img th:src="@{/assets/admin/assets/images/logo/logo.png}" alt="Logo" srcset=""></a>
+                            <a href="index.html"><img th:src="@{/assets/admin/assets/images/logo/logo.png}" alt="Logo"
+                                    srcset=""></a>
                         </div>
                         <div class="toggler">
                             <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -37,33 +38,33 @@
                         <li class="sidebar-title">Menu</li>
 
                         <li class="sidebar-item  ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a th:href="@{/admin/}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item  ">
-                            <a href="table-datatable.html" class='sidebar-link'>
+                        <li class="sidebar-item ">
+                            <a th:href="@{/admin/categoria/}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Categoría</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="table-datatable.html" class='sidebar-link'>
+                            <a th:href="@{/admin/producto/}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Producto</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="table-datatable.html" class='sidebar-link'>
+                            <a th:href="@{/admin/usuario/}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Usuario</span>
                             </a>
                         </li>
-                        <li class="sidebar-item  ">
-                            <a href="table-datatable.html" class='sidebar-link'>
+                        <li class="sidebar-item active ">
+                            <a th:href="@{/admin/ventas/}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                                <span>Ventas</span>
+                                <span>DVentas</span>
                             </a>
                         </li>
                     </ul>
@@ -98,30 +99,25 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            Simple Datatable
+                            Categoría
                         </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>City</th>
-                                        <th>Status</th>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Estatus</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Graiden</td>
-                                        <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                        <td>076 4820 8838</td>
-                                        <td>Offenburg</td>
-                                        <td>
-                                            <span class="badge bg-success">Active</span>
-                                        </td>
+                                    <tr data-th-each="categoria :${categoria}">
+                                        <td data-th-text="${categoria.nom_cat}"></td>
+                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td><span class="badge bg-warning">Agregar</span></td>
+                                        <td><span class="badge bg-secondary">Editar</span></td>
                                     </tr>
-                                     
+
                                 </tbody>
                             </table>
                         </div>

@@ -46,5 +46,4 @@ public class UsuarioServiceImp implements IUsuarioService {
         return usuariodao.findById(usuario.getId_usu()).orElse(null);
 
     }
-
 }

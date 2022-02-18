@@ -30,8 +30,8 @@ public class ControllerUsuario {
     @GetMapping("admin/usuario/")
     public String listaUsuarios(Model model) {
         List<Usuario> usuarios = usuarioService.listarUsuario();
-        model.addAttribute("usuario", usuarios);
-        return "admin/table-datatable";
+        model.addAttribute("usuarios", usuarios);
+        return "admin/usuarios";
     }
 
     @PostMapping("admin/agregar-usuario/")
@@ -106,6 +106,6 @@ public class ControllerUsuario {
 
     @GetMapping("admin/")
     public String pageAdmin(Model model) {
-        return "admin/table-datatable";
+        return "redirect:/admin/producto/";
     }
 }

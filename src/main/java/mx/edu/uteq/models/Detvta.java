@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
@@ -28,9 +31,13 @@ public class Detvta {
     public long id_dv;
     @ManyToOne(optional=false)
     @JoinColumn(name="id_vta")
+    @NotEmpty
     public Ventas id_vta;
     @ManyToOne(optional=false)
     @JoinColumn(name="id_prod")
+    @NotEmpty
     public Producto id_prod;
+    @NotEmpty
+    @Min(value = 0, message = "La cantida mínimo es 0")
     public int cant_pdin;
 }
