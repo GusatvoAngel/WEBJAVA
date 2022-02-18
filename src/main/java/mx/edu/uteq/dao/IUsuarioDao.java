@@ -12,5 +12,4 @@ import mx.edu.uteq.models.Usuario;
  * @author usuario
  */
 public interface IUsuarioDao extends JpaRepository<Usuario, Long>  {
-    
 }

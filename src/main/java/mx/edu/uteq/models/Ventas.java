@@ -17,6 +17,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
 /**
@@ -34,17 +36,20 @@ public class Ventas {
     
     @Column(name = "fecha_hr")
     @Temporal(TemporalType.TIMESTAMP)
+    @NotEmpty
     private Date fecha_hr;
     
     @PrePersist
     public void prePersist() {
         fecha_hr = new Date();
     }
-    
+    @NotEmpty
+    @Min(value = 0, message = "El precio mínimo es 0")
     public float total_pagado;
 
     //Es foranea investegir como se relaciona
     @ManyToOne(optional=false)
     @JoinColumn(name="id_usu")
+    @NotEmpty
     public Usuario id_usu;
 }

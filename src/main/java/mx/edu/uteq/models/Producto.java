@@ -12,6 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
@@ -22,15 +26,24 @@ import lombok.Data;
 @Entity
 @Table(name = "producto")
 public class Producto {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long id_prod;
+    @NotEmpty
+    @NotNull(message = "Debes especificar el nombre")
+    @Size(min = 1, max = 50, message = "El nombre debe medir entre 1 y 50")
     public String nom_prod;
+    @NotEmpty
+    @Min(value = 0, message = "El precio mínimo es 0")
     public float costo_prod;
+    @NotEmpty
+    @Min(value = 0, message = "El precio mínimo es 0")
     public float precio_prod;
+    @NotEmpty
+    @Min(value = 0, message = "El precio mínimo es 0")
     public int cantidad_prod;
-    @ManyToOne(optional=false)
-    @JoinColumn(name="id_cat")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_cat")
     public Categoria id_cat;
 }

@@ -6,11 +6,13 @@
 package mx.edu.uteq.Controller;
 
 import java.util.List;
+import javax.validation.Valid;
 import mx.edu.uteq.models.Categoria;
 import mx.edu.uteq.service.ICategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,39 +23,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class ControllerCategoria {
-    
-   @RequestMapping("categoria/")
-    public String page(Model model) {
-        model.addAttribute("nombre", "Hola desde Controlador Inicio");
-        return "cliente/index";
-    }
+
+
     @Autowired
     private ICategoriaService categoriaService;
 
-    @GetMapping("admin/usuario/")
+    @GetMapping("admin/categoria/")
     public String listaCategoria(Model model) {
-        List<Categoria> usuarios = categoriaService.listarCategoria();
-        model.addAttribute("usuario", usuarios);
-        return "admin/table-datatable";
+        List<Categoria> categoria = categoriaService.listarCategoria();
+        model.addAttribute("categoria", categoria);
+        return "admin/categoria";
     }
 
-    @PostMapping("admin/agregar-usuario/")
-    public String agregarCategoria(Categoria categoria) {
+    @PostMapping("admin/agregarCategoria/")
+    public String agregarCategoria(@Valid Categoria categoria, Errors error) {
+        if (error.hasErrors()) {
+            return "/admin/categoria";
+        }
         categoriaService.guardar(categoria);
-        return "redirect:/admin/usuario";
+        return "redirect:/admin/categoria";
     }
-    
-    @GetMapping("admin/editarUsuario/{idUsuario}")
-    public String editarCategoria(Categoria categoria,Model model) {
-        categoria= categoriaService.encontrarCategoria(categoria);
-         model.addAttribute("categoria", categoria);
-        return "admin/table-datatable";
+
+    @GetMapping("admin/categoria/editarCategoria/{idCategoria}")
+    public String editarCategoria(@Valid Categoria categoria, Model model, Errors error) {
+        if (error.hasErrors()) {
+            return "/admin/categoria";
+        }
+        categoria = categoriaService.encontrarCategoria(categoria);
+        model.addAttribute("categoria", categoria);
+        return "admin/categoria";
     }
-    
-    @GetMapping("admin/borrar/{idUsuario}")
+
+    @GetMapping("admin/borrarcategoria/{idcategoria}")
     public String borrarCategoria(Categoria categoria) {
         categoriaService.eliminar(categoria);
-        return "admin/table-datatable";
+        return "admin/categoria";
     }
-    
+
 }

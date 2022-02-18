@@ -33,8 +33,8 @@ public class ControllerVentas {
     @GetMapping("admin/ventas/")
     public String listaVentas(Model model) {
         List<Ventas> ventas = ventasService.listarVentas();
-        model.addAttribute("ventas");
-        return "admin/table-datatable";
+        model.addAttribute("ventas", ventas);
+        return "admin/ventas";
     }
 
     @PostMapping("admin/agregarVentas/")
@@ -50,7 +50,7 @@ public class ControllerVentas {
         return "admin/table-datatable";
     }
     
-    @GetMapping("admin/borrar/{idVentas")
+    @GetMapping("admin/borrar/{idVentas}")
     public String borrarVentas(Ventas ventas) {
         ventasService.eliminar(ventas);
         return "admin/table-datatable";
