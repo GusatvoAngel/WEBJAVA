@@ -39,24 +39,26 @@ public class ControllerProducto {
         model.addAttribute("producto", producto);
         return "admin/producto";
     }
+    @GetMapping("admin/agregarProducto/")
+    public String agregarProductoPage(Producto producto ) {
+        return "admin/modificarProducto";
+    }
 
-    @PostMapping("admin/agregar-producto/")
+    @PostMapping("admin/agregarProducto/")
     public String agregarProducto(@Valid Producto producto , Errors error) {
         if(error.hasErrors()){
-            return "/admin/usuario";
+            return "/admin/modificarProducto";
         }
         iProductoService.guardar(producto);
-        return "redirect:/admin/usuario";
+        return "redirect:/admin/producto/";
     }
+    
    
-    @GetMapping("admin/editarProducto/{idProducto}")
-    public String editarProducto(@Valid Producto producto,Model model, Errors error) {
-        if(error.hasErrors()){
-            return "/admin/usuario";
-        }
+    @GetMapping("/admin/editarProducto/{id_prod}")
+    public String editarProducto( Producto producto,Model model) {
         producto= iProductoService.encontrarProducto(producto);
          model.addAttribute("producto", producto);
-        return "admin/table-datatable";
+        return "admin/modificarProducto";
     }
     
     @GetMapping("admin/borrar/{idProducto}")

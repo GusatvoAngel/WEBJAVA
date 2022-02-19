@@ -94,7 +94,9 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            Categoría
+                            Producto
+                            <p class="text-subtitle text-muted"><a data-th-href="@{/admin/agregarProducto/}">Agregar</a></p>
+
                         </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
@@ -119,7 +121,7 @@
                                         <td data-th-text="${producto.cantidad_prod}"></td>
                                         <td data-th-text="${producto.id_cat.nom_cat}"></td>
                                         <td><span class="badge bg-success">Active</span></td>
-                                        <td><span class="badge bg-secondary">Editar</span></td>
+                                        <td><a class="badge bg-secondary" th:href="@{/admin/editarProducto/}+${producto.id_prod}">Editar</a></td>
                                     </tr>
 
                                 </tbody>

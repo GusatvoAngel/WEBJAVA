@@ -6,12 +6,14 @@
 package mx.edu.uteq.Controller;
 
 import java.util.List;
+import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import mx.edu.uteq.models.Usuario;
 import mx.edu.uteq.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,18 +35,25 @@ public class ControllerUsuario {
         model.addAttribute("usuarios", usuarios);
         return "admin/usuarios";
     }
-
-    @PostMapping("admin/agregar-usuario/")
-    public String agregarUsuarios(Usuario usuario) {
-        usuarioService.guardar(usuario);
-        return "redirect:/admin/usuario";
+    @GetMapping("admin/agregarUsuario/")
+    public String agregarUsuarioPage(Usuario usuario) {
+        return "admin/modificarUsuario";
     }
     
-    @GetMapping("admin/editarUsuario/{idUsuario}")
-    public String editarUsuarios(Usuario usuario,Model model) {
+    @PostMapping("admin/agregarUsuario/")
+    public String agregarUsuarios(@Valid Usuario usuario,  Errors error) {
+        if(error.hasErrors()){
+            return "admin/modificarUsuario";
+        }
+        usuarioService.guardar(usuario);
+        return "redirect:/admin/usuario/";
+    }
+    
+    @GetMapping("/admin/editarUsuario/{id_usu}")
+    public String editarUsuarios(Usuario usuario, Model model) {
         usuario= usuarioService.encontrarUsuario(usuario);
          model.addAttribute("usuario", usuario);
-        return "admin/table-datatable";
+        return "admin/modificarUsuario";
     }
     
     @GetMapping("admin/borrar/{idUsuario}")
