@@ -5,6 +5,9 @@
  */
 package mx.edu.uteq.dao;
 
+import java.util.List;
+import java.util.Optional;
+import javax.swing.text.html.Option;
 import org.springframework.data.jpa.repository.JpaRepository;
 import mx.edu.uteq.models.Usuario;
 /**
@@ -12,4 +15,6 @@ import mx.edu.uteq.models.Usuario;
  * @author usuario
  */
 public interface IUsuarioDao extends JpaRepository<Usuario, Long>  {
+      Optional<Usuario> findByCorreo(String correo);
+
 }

@@ -6,6 +6,8 @@
 package mx.edu.uteq.Controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import mx.edu.uteq.models.Usuario;
@@ -15,8 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -35,32 +39,43 @@ public class ControllerUsuario {
         model.addAttribute("usuarios", usuarios);
         return "admin/usuarios";
     }
+
     @GetMapping("admin/agregarUsuario/")
     public String agregarUsuarioPage(Usuario usuario) {
         return "admin/modificarUsuario";
     }
-    
+
     @PostMapping("admin/agregarUsuario/")
-    public String agregarUsuarios(@Valid Usuario usuario,  Errors error) {
-        if(error.hasErrors()){
+    public String agregarUsuarios(@Valid Usuario usuario, Errors error) {
+        if (error.hasErrors()) {
             return "admin/modificarUsuario";
         }
         usuarioService.guardar(usuario);
         return "redirect:/admin/usuario/";
     }
-    
+
     @GetMapping("/admin/editarUsuario/{id_usu}")
     public String editarUsuarios(Usuario usuario, Model model) {
-        usuario= usuarioService.encontrarUsuario(usuario);
-         model.addAttribute("usuario", usuario);
+        usuario = usuarioService.encontrarUsuario(usuario);
+        model.addAttribute("usuario", usuario);
         return "admin/modificarUsuario";
     }
-    
+
+    @GetMapping("/admin/login/{correo_usu}/{pass}")
+    public String buscarUsuarios(@PathVariable String correo_usu, @PathVariable String pass, Usuario usuario, Model model) {
+//        String correo_usu = pathVarsMap.get("correo_usu");
+//        String pass = pathVarsMap.get("pass");
+        Optional<Usuario> resultado = usuarioService.findByCorreo("gus@live.com");
+        model.addAttribute("usuario", resultado);
+        return "admin/modificarUsuario";
+    }
+
     @GetMapping("admin/borrar/{idUsuario}")
     public String borrarUsuarios(Usuario usuario) {
         usuarioService.eliminar(usuario);
         return "admin/table-datatable";
     }
+
     @RequestMapping("usuario/")
     public String page(Model model) {
         model.addAttribute("nombre", "Hola desde Controlador Inicio");
