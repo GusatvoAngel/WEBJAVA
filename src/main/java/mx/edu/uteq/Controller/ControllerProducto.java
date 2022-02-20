@@ -37,6 +37,7 @@ public class ControllerProducto {
 
     @Autowired
     private ICategoriaService categoriaService;
+    
 
     @GetMapping("admin/producto/")
     public String listaProducto(Model model) {
@@ -67,6 +68,7 @@ public class ControllerProducto {
     public String editarProducto(Producto producto, Model model) {
         producto = iProductoService.encontrarProducto(producto);
         model.addAttribute("producto", producto);
+        
         List<Categoria> categoria = categoriaService.listarCategoria();
         model.addAttribute("categoria", categoria);
         return "admin/modificarProducto";
