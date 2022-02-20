@@ -7,8 +7,10 @@ package mx.edu.uteq.Controller;
 
 import java.util.List;
 import javax.validation.Valid;
+import mx.edu.uteq.models.Usuario;
 import mx.edu.uteq.models.Ventas;
 import mx.edu.uteq.service.IVentasService;
+import mx.edu.uteq.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +34,9 @@ public class ControllerVentas {
     @Autowired
     private IVentasService ventasService;
 
+    @Autowired
+    private IUsuarioService iUsuarioService;
+
     @GetMapping("admin/ventas/")
     public String listaVentas(Model model) {
         List<Ventas> ventas = ventasService.listarVentas();
@@ -40,23 +45,29 @@ public class ControllerVentas {
     }
 
     @GetMapping("admin/agregarVentas/")
-    public String agregarVentasPage(Ventas ventas) {
-        return "admin/modificarVentas";
+    public String agregarVentasPage(Ventas ventas, Model model) {
+        List<Usuario> usuarios = iUsuarioService.listarUsuario();
+        model.addAttribute("usuarios2", usuarios);
+        return "/admin/agregarVentas";
     }
 
     @PostMapping("admin/agregarVentas/")
-    public String agregarVentas(@Valid Ventas ventas,Errors error) {
-        if(error.hasErrors()){
-            return "admin/modificarVentas";
+    public String agregarVentas(@Valid Ventas ventas, Errors error, Model model) {
+        if (error.hasErrors()) {
+            List<Usuario> usuarios = iUsuarioService.listarUsuario();
+            model.addAttribute("usuarios2", usuarios);
+            return "admin/agregarVentas";
         }
         ventasService.guardar(ventas);
         return "redirect:/admin/ventas/";
     }
 
-    @GetMapping("admin/editarVentas/{idVentas}")
+    @GetMapping("/admin/editarVentas/{id_vta}")
     public String editarVentas(Ventas ventas, Model model) {
         ventas = ventasService.encontrarVentas(ventas);
-        model.addAttribute("usuario", ventas);
+        model.addAttribute("ventas", ventas);
+        List<Usuario> usuarios = iUsuarioService.listarUsuario();
+        model.addAttribute("usuario", usuarios);
         return "admin/modificarVentas";
     }
 

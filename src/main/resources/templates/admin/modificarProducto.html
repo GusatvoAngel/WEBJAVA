@@ -75,59 +75,127 @@
             </div>
         </div>
         <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
+            <section id="basic-vertical-layouts">
+                <div class="row match-height">
+                    <div class="col-md-8 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Categoría</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form class="form form-vertical" method="post"
+                                        data-th-action="@{/admin/agregarProducto/}" data-th-object="${producto}">
 
-            <div class="page-heading">
-                <div class="page-title">
-                    <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Producto
-                            </h3>
-                            <p class="text-subtitle text-muted"> <a data-th-href="@{/producto}">Regresar</a>
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <input type="hidden" name="idProducto" data-th-field="*{id_prod}" />
+                                                    <div class="form-group has-icon-left">
 
-                            </p>
+                                                        <label for="nombreProducto">Nombre Producto:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Nombre Producto" name="nombreProducto"
+                                                                data-th-field="*{nom_prod}">
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-person"></i>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('nom_prod')}"
+                                                            data-th-errors="*{nom_prod}">
+                                                        </p>
+                                                        <label for="costoProducto">Costo:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Nombre Producto" name="costoProducto"
+                                                                data-th-field="*{costo_prod}">
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-person"></i>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('costo_prod')}"
+                                                            data-th-errors="*{costo_prod}">
+                                                        </p>
+                                                        <label for="precioProducto">Precio:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Nombre Producto" name="precioProducto"
+                                                                data-th-field="*{precio_prod}">
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-person"></i>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('precio_prod')}"
+                                                            data-th-errors="*{precio_prod}">
+                                                        </p>
+                                                        <label for="cantidadProducto">Cantidad:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Nombre Producto" name="cantidadProducto"
+                                                                data-th-field="*{cantidad_prod}">
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-person"></i>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('cantidad_prod')}"
+                                                            data-th-errors="*{cantidad_prod}">
+                                                        </p>
+                                                        <label for="categoria">Categoría:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Nombre Producto" name="categoria"
+                                                                data-th-field="*{id_cat.nom_cat}">
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-person"></i>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('id_cat')}"
+                                                            data-th-errors="*{id_cat}">
+                                                        </p>
+                                                        <div class="input-group mb-3">
+                                                            <label class="input-group-text"
+                                                                for="inputGroupSelect01">Categoría</label>
+                                                            <select class="form-select" id="inputGroupSelect01 *{id_cat}">
+                                                                <option data-th-each="categoria : ${categoria}"
+                                                                data-th-text="${categoria.nom_cat}"
+                                                                data-th-value="${categoria.id_cat}"
+                                                                data-th-selected="${categoria.id_cat == id_cat}">
+                                                               </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-lg-start">
+                                                    <button type="submit"
+                                                        class="btn btn-primary me-1 mb-1">Submit</button>
+                                                    <button type="reset"
+                                                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <section class="section">
-                    <div class="card">
-                        <div class="card-header"> </div>
-                        <div class="card-body">
-                            <form method="post" data-th-action="@{/admin/agregarProducto/}"
-                                data-th-object="${producto}">
-                                <input type="hidden" name="idProducto" data-th-field="*{id_prod}" />
-                                <label for="nombre"> Nombre de Producto: </label>
-                                <input type="text" name="nombreProducto" data-th-field="*{nom_prod}" /> <br>
-                                <p class="text-subtitle text-danger" data-th-if="${#fields.hasErrors('nom_prod')}"
-                                    data-th-errors="*{nom_prod}"> </p>
-                                <label for="nombre"> Costo: </label>
-                                <input type="number" name="costoProducto" data-th-field="*{costo_prod}" /> <br>
-                                <p class="text-subtitle text-danger" data-th-if="${#fields.hasErrors('costo_prod')}"
-                                    data-th-errors="*{costo_prod}"> </p>
-                                <label for="nombre"> Precio: </label>
-                                <input type="number" name="precioProducto" data-th-field="*{precio_prod}" /> <br>
-                                <p class="text-subtitle text-danger" data-th-if="${#fields.hasErrors('precio_prod')}"
-                                    data-th-errors="*{precio_prod}"> </p>
-                                <label for="nombre"> Cantidad: </label>
-                                <input type="number" name="cantidadProducto" data-th-field="*{cantidad_prod}" /> <br>
-                                <p class="text-subtitle text-danger" data-th-if="${#fields.hasErrors('cantidad_prod')}"
-                                    data-th-errors="*{cantidad_prod}"> </p>
-                                <label for="nombre"> Categoria: </label>
-                                <input type="text" name="categoria" data-th-field="*{id_cat}" /> <br>
-                                <p class="text-subtitle text-danger" data-th-if="${#fields.hasErrors('id_cat')}"
-                                    data-th-errors="*{id_cat}"> </p>
-                                <input type="submit" name="guardar" value="guardar" />
-                            </form>
-                        </div>
-                    </div>
-
-                </section>
-            </div>
-
+            </section>
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">

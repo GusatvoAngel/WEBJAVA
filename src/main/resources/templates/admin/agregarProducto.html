@@ -51,7 +51,7 @@
                                 <span>Categoría</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-item active">
                             <a th:href="@{/admin/producto/}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Producto</span>
@@ -63,7 +63,7 @@
                                 <span>Usuario</span>
                             </a>
                         </li>
-                        <li class="sidebar-item  active">
+                        <li class="sidebar-item  ">
                             <a th:href="@{/admin/ventas/}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Ventas</span>
@@ -85,18 +85,19 @@
                             <div class="card-content">
                                 <div class="card-body">
                                     <form class="form form-vertical" method="post"
-                                    data-th-actions="@{/agregarVentas/}" data-th-object="${ventas}">
+                                        data-th-action="@{/admin/agregarProducto/}" data-th-object="${producto}">
+
                                         <div class="form-body">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <input type="hidden" name="idVenta" data-th-field="*{id_vta}"/>
-
+                                                    <input type="hidden" name="idProducto" data-th-field="*{id_prod}" />
                                                     <div class="form-group has-icon-left">
-                                                        <label for="first-name-icon">Total de venta:</label>
+
+                                                        <label for="nombreProducto">Nombre Producto:</label>
                                                         <div class="position-relative">
                                                             <input type="text" class="form-control"
-                                                                placeholder="Total de venta:" id="nombre "
-                                                                name="totalVenta" data-th-field="*{total_pagado}">
+                                                                placeholder="Nombre Producto" name="nombreProducto"
+                                                                data-th-field="*{nom_prod}">
                                                             <div class="form-control-icon">
                                                                 <i class="bi bi-person"></i>
                                                             </div>
@@ -104,26 +105,70 @@
                                                         </div>
                                                         <br>
                                                         <p class="text-subtitle text-danger"
-                                                            data-th-if="${#fields.hasErrors('total_pagado')}"
-                                                            data-th-errors="*{total_pagado}">
+                                                            data-th-if="${#fields.hasErrors('nom_prod')}"
+                                                            data-th-errors="*{nom_prod}">
+                                                        </p>
+                                                        <label for="costoProducto">Costo:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Nombre Producto" name="costoProducto"
+                                                                data-th-field="*{costo_prod}">
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-person"></i>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('costo_prod')}"
+                                                            data-th-errors="*{costo_prod}">
+                                                        </p>
+                                                        <label for="precioProducto">Precio:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Nombre Producto" name="precioProducto"
+                                                                data-th-field="*{precio_prod}">
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-person"></i>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('precio_prod')}"
+                                                            data-th-errors="*{precio_prod}">
+                                                        </p>
+                                                        <label for="cantidadProducto">Cantidad:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Nombre Producto" name="cantidadProducto"
+                                                                data-th-field="*{cantidad_prod}">
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-person"></i>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('cantidad_prod')}"
+                                                            data-th-errors="*{cantidad_prod}">
                                                         </p>
                                                         <div class="input-group mb-3">
                                                             <label class="input-group-text"
-                                                                for="inputGroupSelect01">Usuario</label>
+                                                                for="inputGroupSelect01">Categoría</label>
                                                             <select class="form-select"
-                                                                id="inputGroupSelect01" data-th-field="*{id_usu}">
-                                                                <option data-th-each="usuario : ${usuario}"
-                                                                    data-th-text="${usuario.nom_usu}"
-                                                                    data-th-value="${usuario.id_usu}"
-                                                                    data-th-selected="${usuario.id_usu == id_usu}"
-                                                                    ></option>
+                                                                id="inputGroupSelect01 *{id_cat}">
+                                                                <option data-th-each="categoria : ${categoria2}"
+                                                                    data-th-text="${categoria.nom_cat}"
+                                                                    data-th-value="${categoria.id_cat}">
+                                                                </option>
                                                             </select>
                                                         </div>
                                                         <p class="text-subtitle text-danger"
-                                                            data-th-if="${#fields.hasErrors('id_usu')}"
-                                                            data-th-errors="*{id_usu}">
+                                                            data-th-if="${#fields.hasErrors('id_cat')}"
+                                                            data-th-errors="*{id_cat}">
                                                         </p>
-                                                        
+
                                                     </div>
                                                 </div>
                                                 <div class="col-12 d-flex justify-content-lg-start">

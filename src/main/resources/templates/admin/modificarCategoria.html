@@ -45,13 +45,13 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item ">
+                        <li class="sidebar-item active">
                             <a th:href="@{/admin/categoria/}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Categoría</span>
                             </a>
                         </li>
-                        <li class="sidebar-item active">
+                        <li class="sidebar-item">
                             <a th:href="@{/admin/producto/}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Producto</span>
@@ -75,43 +75,54 @@
             </div>
         </div>
         <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
+            <section id="basic-vertical-layouts">
+                <div class="row match-height">
+                    <div class="col-md-8 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Categoría</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form class="form form-vertical" method="post"
+                                        data-th-action="@{/admin/agregarCategoria/}" data-th-object="${categoria}">
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <input type="hidden" name="idCategoria" data-th-field="*{id_cat}" />
+                                                    <div class="form-group has-icon-left">
+                                                        <label for="first-name-icon">Nombre Categoría:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Nombre categoría" id="nombre "
+                                                                name="nombreCategoria" data-th-field="*{nom_cat}">
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-person"></i>
+                                                            </div>
 
-            <div class="page-heading">
-                <div class="page-title">
-                    <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Categoría
-                            </h3>
-                            <p class="text-subtitle text-muted"> <a data-th-href="@{/categoria}">Regresar</a>
-
-                            </p>
+                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('nom_cat')}"
+                                                            data-th-errors="*{nom_cat}">
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-lg-start">
+                                                    <button type="submit"
+                                                        class="btn btn-primary me-1 mb-1">Submit</button>
+                                                    <button type="reset"
+                                                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <section class="section">
-                    <div class="card">
-                        <div class="card-header"> </div>
-                        <div class="card-body">
-                            <br>
-                            <form method="post" data-th-action="@{/admin/agregarCategoria/}" data-th-object="${categoria}">
-                                <input type="hidden" name="idCategoria" data-th-field="*{id_cat}"/>
-                                <label for="nombre"> Nombre Categoria: </label>
-                                <input type="text" name="nombreCategoria" data-th-field="*{nom_cat}" /> <br>
-                                <p class="text-subtitle text-danger" data-th-if="${#fields.hasErrors('nom_cat')}" data-th-errors="*{nom_cat}"> </p>
-
-                                <input type="submit" name="guardar" value="guardar" />
-                            </form>
-                        </div>
-                    </div>
-
-                </section>
-            </div>
-
+            </section>
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">

@@ -111,12 +111,11 @@
                                                             <label class="input-group-text"
                                                                 for="inputGroupSelect01">Usuario</label>
                                                             <select class="form-select"
-                                                                id="inputGroupSelect01" data-th-field="*{id_usu}">
-                                                                <option data-th-each="usuario : ${usuario}"
-                                                                    data-th-text="${usuario.nom_usu}"
-                                                                    data-th-value="${usuario.id_usu}"
-                                                                    data-th-selected="${usuario.id_usu == id_usu}"
-                                                                    ></option>
+                                                                id="inputGroupSelect01 *{id_usu}">
+                                                                <option data-th-each="usuarios : ${usuarios2}"
+                                                                    data-th-text="${usuarios.nom_usu}"
+                                                                    data-th-value="${usuarios.id_usu}">
+                                                                </option>
                                                             </select>
                                                         </div>
                                                         <p class="text-subtitle text-danger"
