@@ -6,6 +6,7 @@
 package mx.edu.uteq.service;
 
 import java.util.List;
+import java.util.Optional;
 import mx.edu.uteq.models.Usuario;
 
 /**
@@ -14,6 +15,7 @@ import mx.edu.uteq.models.Usuario;
  */
 public interface IUsuarioService {
     public List<Usuario> listarUsuario(); 
+    public Optional<Usuario> findByCorreo(String correo);
     public void guardar(Usuario usuario); 
     public void eliminar(Usuario usuario); 
     public Usuario encontrarUsuario(Usuario usuario);

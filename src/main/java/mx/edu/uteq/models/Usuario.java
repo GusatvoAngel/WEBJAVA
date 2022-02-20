@@ -39,6 +39,10 @@ public class Usuario {
     @NotNull(message = "Debes especificar el nombre")
     @Size(min = 1, max = 50, message = "El nombre debe medir entre 1 y 50")
     public String tipo_usu;
+    @NotEmpty
+    @NotNull(message = "Debes especificar el nombre")
+    @Size(min = 1, max = 50, message = "El nombre debe medir entre 1 y 50")
+    public String correo;
   // @OneToMany(cascade = CascadeType.ALL)
    // @JoinColumn(name = "id_vta")
    // private List<Ventas> catalogoProductoList;
