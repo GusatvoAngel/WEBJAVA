@@ -34,13 +34,13 @@ public class Producto {
     @NotNull(message = "Debes especificar el nombre")
     @Size(min = 1, max = 50, message = "El nombre debe medir entre 1 y 50")
     public String nom_prod;
-    @NotEmpty
+    @NotNull
     @Min(value = 0, message = "El precio mínimo es 0")
     public float costo_prod;
-    @NotEmpty
+    @NotNull
     @Min(value = 0, message = "El precio mínimo es 0")
     public float precio_prod;
-    @NotEmpty
+    @NotNull
     @Min(value = 0, message = "El precio mínimo es 0")
     public int cantidad_prod;
     @ManyToOne(optional = false)

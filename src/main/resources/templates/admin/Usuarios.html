@@ -99,7 +99,8 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            Categoría
+                            Usuario
+                            <p class="text-subtitle text-muted"><a data-th-href="@{/admin/agregarUsuario/}">Agregar</a></p>
                         </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
@@ -117,7 +118,7 @@
                                         <td data-th-text="${usuarios.nom_usu}"></td>
                                         <td data-th-text="${usuarios.tipo_usu}"></td>
                                         <td><span class="badge bg-success">Active</span></td>
-                                        <td><span class="badge bg-secondary">Editar</span></td>
+                                        <td><a class="badge bg-secondary" th:href="@{/admin/editarUsuario/}+${usuarios.id_usu}">Editar</a></td>
                                     </tr>
 
                                 </tbody>

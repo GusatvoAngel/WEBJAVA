@@ -26,7 +26,6 @@ public class Usuario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotEmpty
     public long id_usu;
     @NotEmpty
     @NotNull(message = "Debes especificar el nombre")

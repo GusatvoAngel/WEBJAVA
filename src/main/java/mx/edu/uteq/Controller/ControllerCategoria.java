@@ -34,27 +34,29 @@ public class ControllerCategoria {
         model.addAttribute("categoria", categoria);
         return "admin/categoria";
     }
-
+    
+    @GetMapping("admin/agregarCategoria/")
+    public String agregarCategoriaPage(Categoria categoria ) {
+        return "admin/modificarCategoria";
+    }
+    
     @PostMapping("admin/agregarCategoria/")
     public String agregarCategoria(@Valid Categoria categoria, Errors error) {
         if (error.hasErrors()) {
-            return "/admin/categoria";
+            return "admin/modificarCategoria";
         }
         categoriaService.guardar(categoria);
-        return "redirect:/admin/categoria";
+       return "redirect:/admin/categoria/";
     }
 
-    @GetMapping("admin/categoria/editarCategoria/{idCategoria}")
-    public String editarCategoria(@Valid Categoria categoria, Model model, Errors error) {
-        if (error.hasErrors()) {
-            return "/admin/categoria";
-        }
+    @GetMapping("/admin/editarCategoria/{id_cat}")
+    public String editarCategoria(Categoria categoria, Model model) {
         categoria = categoriaService.encontrarCategoria(categoria);
         model.addAttribute("categoria", categoria);
-        return "admin/categoria";
+        return "admin/modificarCategoria";
     }
 
-    @GetMapping("admin/borrarcategoria/{idcategoria}")
+    @GetMapping("admin/borrarcategoria/{id_cat}")
     public String borrarCategoria(Categoria categoria) {
         categoriaService.eliminar(categoria);
         return "admin/categoria";

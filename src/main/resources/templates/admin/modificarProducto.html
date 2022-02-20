@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataTable - Mazer Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/assets/admin/assets/css/bootstrap.css}">
+
+    <link rel="stylesheet" th:href="@{/assets/admin/assets/vendors/simple-datatables/style.css}">
+
+    <link rel="stylesheet" th:href="@{/assets/admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.css}">
+    <link rel="stylesheet" th:href="@{/assets/admin/assets/vendors/bootstrap-icons/bootstrap-icons.css}">
+    <link rel="stylesheet" th:href="@{/assets/admin/assets/css/app.css}">
+    <link rel="shortcut icon" th:href="@{/assets/admin/assets/images/favicon.svg}" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="index.html"><img th:src="@{/assets/admin/assets/images/logo/logo.png}" alt="Logo"
+                                    srcset=""></a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menu</li>
+
+                        <li class="sidebar-item  ">
+                            <a th:href="@{/admin/}" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item ">
+                            <a th:href="@{/admin/categoria/}" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Categoría</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item active">
+                            <a th:href="@{/admin/producto/}" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Producto</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a th:href="@{/admin/usuario/}" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Usuario</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a th:href="@{/admin/ventas/}" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                                <span>Ventas</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main">
+            <section id="basic-vertical-layouts">
+                <div class="row match-height">
+                    <div class="col-md-8 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Categoría</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form class="form form-vertical" method="post"
+                                        data-th-action="@{/admin/agregarProducto/}" data-th-object="${producto}">
+
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <input type="hidden" name="idProducto" data-th-field="*{id_prod}" />
+                                                    <div class="form-group has-icon-left">
+
+                                                        <label for="nombreProducto">Nombre Producto:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Nombre Producto" name="nombreProducto"
+                                                                data-th-field="*{nom_prod}">
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-person"></i>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('nom_prod')}"
+                                                            data-th-errors="*{nom_prod}">
+                                                        </p>
+                                                        <label for="costoProducto">Costo:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Nombre Producto" name="costoProducto"
+                                                                data-th-field="*{costo_prod}">
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-person"></i>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('costo_prod')}"
+                                                            data-th-errors="*{costo_prod}">
+                                                        </p>
+                                                        <label for="precioProducto">Precio:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Nombre Producto" name="precioProducto"
+                                                                data-th-field="*{precio_prod}">
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-person"></i>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('precio_prod')}"
+                                                            data-th-errors="*{precio_prod}">
+                                                        </p>
+                                                        <label for="cantidadProducto">Cantidad:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Nombre Producto" name="cantidadProducto"
+                                                                data-th-field="*{cantidad_prod}">
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-person"></i>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('cantidad_prod')}"
+                                                            data-th-errors="*{cantidad_prod}">
+                                                        </p>
+                                                        <label for="categoria">Categoría:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Nombre Producto" name="categoria"
+                                                                data-th-field="*{id_cat.nom_cat}">
+                                                            <div class="form-control-icon">
+                                                                <i class="bi bi-person"></i>
+                                                            </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('id_cat')}"
+                                                            data-th-errors="*{id_cat}">
+                                                        </p>
+                                                        <div class="input-group mb-3">
+                                                            <label class="input-group-text"
+                                                                for="inputGroupSelect01">Categoría</label>
+                                                            <select class="form-select" id="inputGroupSelect01 *{id_cat}">
+                                                                <option data-th-each="categoria : ${categoria}"
+                                                                data-th-text="${categoria.nom_cat}"
+                                                                data-th-value="${categoria.id_cat}"
+                                                                data-th-selected="${categoria.id_cat == id_cat}">
+                                                               </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-lg-start">
+                                                    <button type="submit"
+                                                        class="btn btn-primary me-1 mb-1">Submit</button>
+                                                    <button type="reset"
+                                                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2021 &copy; Mazer</p>
+                    </div>
+                    <div class="float-end">
+                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
+                                href="http://ahmadsaugi.com">A. Saugi</a></p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script th:src="@{/assets/admin/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+    <script th:src="@{/assets/admin/assets/js/bootstrap.bundle.min.js}"></script>
+
+    <script th:src="@{/assets/admin/assets/vendors/simple-datatables/simple-datatables.js}"></script>
+    <script>
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        let dataTable = new simpleDatatables.DataTable(table1);
+    </script>
+
+    <script th:src="@{/assets/admin/assets/js/main.js}"></script>
+</body>
+
+</html>

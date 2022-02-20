@@ -99,7 +99,8 @@
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            Categoría
+                            Ventas
+                            <p class="text-subtitle text-muted"><a data-th-href="@{/admin/agregarVentas/}">Agregar</a></p>
                         </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
@@ -119,8 +120,8 @@
                                         <td data-th-text="${ventas.fecha_hr}"></td>
                                         <td data-th-text="${ventas.total_pagado}"></td>
                                         <td data-th-text="${ventas.id_usu.nom_usu}"></td>
-                                        <td><span class="badge bg-success">Active</span></td>\
-                                        <td><span class="badge bg-secondary">Editar</span></td>
+                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td><a class="badge bg-secondary" th:href="@{/admin/editarVentas/}+${ventas.id_vta}">Editar</a></td>
                                 </tbody>
                             </table>
                         </div>
