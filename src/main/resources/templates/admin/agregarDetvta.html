@@ -51,7 +51,7 @@
                                         <span>Categoría</span>
                                     </a>
                                 </li>
-                                <li class="sidebar-item">
+                                <li class="sidebar-item ">
                                     <a th:href="@{/admin/producto/}" class='sidebar-link'>
                                         <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                         <span>Producto</span>
@@ -63,13 +63,13 @@
                                         <span>Usuario</span>
                                     </a>
                                 </li>
-                                <li class="sidebar-item  active">
+                                <li class="sidebar-item  ">
                                     <a th:href="@{/admin/ventas/}" class='sidebar-link'>
                                         <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                         <span>Ventas</span>
                                     </a>
                                 </li>
-                                <li class="sidebar-item  ">
+                                <li class="sidebar-item active">
                                     <a th:href="@{/admin/detvta/}" class='sidebar-link'>
                                         <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                         <span>Detalle Venta</span>
@@ -86,26 +86,56 @@
                             <div class="col-md-8 col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Categoría</h4>
+                                        <h4 class="card-title">Detalle Venta</h4>
                                     </div>
                                     <div class="card-content">
                                         <div class="card-body">
                                             <form class="form form-vertical" method="post"
-                                                  data-th-action="@{/admin/agregarVentas/}" data-th-object="${ventas}">
-                                                
+                                                  data-th-action="@{/admin/agregarDetvta/}" data-th-object="${detvta}">
+
                                                 <div class="form-body">
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <input type="hidden" name="idVentas" data-th-field="*{id_vta}"/>                                                                                                                  
-                                                             
-                                                             
-                                                             
+                                                            <input type="hidden" name="idDetvta" data-th-field="*{id_dv}" />
                                                             <div class="form-group has-icon-left">
-                                                                <label for="first-name-icon">Total de venta:</label>
+
+                                                                <div class="input-group mb-3">
+                                                                    <label class="input-group-text"
+                                                                           for="inputGroupSelect01">Venta</label>
+                                                                    <select class="form-select" id="inputGroupSelect01" data-th-field="*{id_vta}">
+                                                                        <option data-th-each="ventas : ${ventas2}"
+                                                                                data-th-text="${ventas.id_vta}"
+                                                                                data-th-value="${ventas.id_vta}">
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <p class="text-subtitle text-danger"
+                                                                   data-th-if="${#fields.hasErrors('id_vta')}"
+                                                                   data-th-errors="*{id_vta}">
+                                                                </p>
+
+
+                                                                <div class="input-group mb-3">
+                                                                    <label class="input-group-text"
+                                                                           for="inputGroupSelect01">Producto</label>
+                                                                    <select class="form-select" id="inputGroupSelect01" data-th-field="*{id_prod}">
+                                                                        <option data-th-each="producto : ${producto2}"
+                                                                                data-th-text="${producto.nom_prod}"
+                                                                                data-th-value="${producto.id_prod}">
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <p class="text-subtitle text-danger"
+                                                                   data-th-if="${#fields.hasErrors('id_prod')}"
+                                                                   data-th-errors="*{id_prod}">
+                                                                </p>
+
+
+                                                                <label for="cantidadDetvta">Cantidad:</label>
                                                                 <div class="position-relative">
                                                                     <input type="text" class="form-control"
-                                                                           placeholder="Total de venta:" id="totalVenta"
-                                                                           name="totalVenta" data-th-field="*{total_pagado}">
+                                                                           placeholder="Cantidad" name="cantidadDetvta"
+                                                                           data-th-field="*{cant}">
                                                                     <div class="form-control-icon">
                                                                         <i class="bi bi-person"></i>
                                                                     </div>
@@ -113,24 +143,8 @@
                                                                 </div>
                                                                 <br>
                                                                 <p class="text-subtitle text-danger"
-                                                                   data-th-if="${#fields.hasErrors('total_pagado')}"
-                                                                   data-th-errors="*{total_pagado}">
-                                                                </p>
-                                                                <div class="input-group mb-3">
-                                                                    <label class="input-group-text"
-                                                                           for="inputGroupSelect01">Usuario</label>
-                                                                    <select class="form-select"
-                                                                            id="inputGroupSelect01" data-th-field="*{id_usu}">
-                                                                        <option data-th-each="usuario : ${usuario}"
-                                                                                data-th-text="${usuario.nom_usu}"
-                                                                                data-th-value="${usuario.id_usu}"
-                                                                                data-th-selected="${usuario.id_usu == id_usu}"
-                                                                                ></option>
-                                                                    </select>
-                                                                </div>
-                                                                <p class="text-subtitle text-danger"
-                                                                   data-th-if="${#fields.hasErrors('id_usu')}"
-                                                                   data-th-errors="*{id_usu}">
+                                                                   data-th-if="${#fields.hasErrors('cant')}"
+                                                                   data-th-errors="*{cant}">
                                                                 </p>
 
                                                             </div>

@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <html>
 
 <head>
@@ -48,13 +51,13 @@
                                 <span>Categoría</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <li class="sidebar-item  ">
                             <a th:href="@{/admin/producto/}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Producto</span>
                             </a>
                         </li>
-                        <li class="sidebar-item  active">
+                        <li class="sidebar-item  ">
                             <a th:href="@{/admin/usuario/}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Usuario</span>
@@ -66,7 +69,7 @@
                                 <span>Ventas</span>
                             </a>
                         </li>
-                        <li class="sidebar-item  ">
+                        <li class="sidebar-item active">
                             <a th:href="@{/admin/detvta/}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Detalle Venta</span>
@@ -83,59 +86,68 @@
                     <div class="col-md-8 col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Categoría</h4>
+                                <h4 class="card-title">Detalle Venta</h4>
                             </div>
                             <div class="card-content">
                                 <div class="card-body">
                                     <form class="form form-vertical" method="post"
-                                        data-th-action="@{/admin/editarUsuario/}" data-th-object="${usuario}">
+                                        data-th-action="@{/admin/agregarDetvta/}" data-th-object="${detvta}">
+
                                         <div class="form-body">
                                             <div class="row">
                                                 <div class="col-12">
+                                                    <input type="hidden" name="idDetvta" data-th-field="*{id_dv}" />
                                                     <div class="form-group has-icon-left">
-                                                        <input type="hidden" name="idUsuario"
-                                                            data-th-field="*{id_usu}" />
-                                                        <div class="form-group position-relative has-icon-left mb-4">
-                                                            <input type="email" class="form-control form-control-xl"
-                                                                name="correo" data-th-field="*{correo}"
-                                                                placeholder="Email">
-                                                            <div class="form-control-icon">
-                                                                <i class="bi bi-envelope"></i>
-                                                            </div>
+                                                        <div class="input-group mb-3">
+                                                            <label class="input-group-text"
+                                                                for="inputGroupSelect01">Ventas</label>
+                                                            <select class="form-select" id="inputGroupSelect01"
+                                                                data-th-field="*{id_vta}">
+                                                                <option data-th-each="ventas : ${ventas}"
+                                                                    data-th-text="${ventas.id_vta}"
+                                                                    data-th-value="${ventas.id_vta}"
+                                                                    data-th-selected="${ventas.id_vta == id_vta}">
+                                                                </option>
+                                                            </select>
                                                         </div>
-                                                        <div class="form-group position-relative has-icon-left mb-4">
-                                                            <input type="text" class="form-control form-control-xl"
-                                                                name="nom_usu" data-th-field="*{nom_usu}"
-                                                                placeholder="Username">
+                                                        <div class="input-group mb-3">
+                                                            <label class="input-group-text"
+                                                                for="inputGroupSelect01">Producto</label>
+                                                            <select class="form-select" id="inputGroupSelect01"
+                                                                data-th-field="*{id_prod}">
+                                                                <option data-th-each="producto : ${producto}"
+                                                                    data-th-text="${producto.nom_prod}"
+                                                                    data-th-value="${producto.id_prod}"
+                                                                    data-th-selected="${producto.id_prod == id_prod}">
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                        <label for="cantidadDetvta">Cantidad:</label>
+                                                        <div class="position-relative">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Cantidad Detalle Venta"
+                                                                name="cantidadDetvta" data-th-field="*{cant}">
                                                             <div class="form-control-icon">
                                                                 <i class="bi bi-person"></i>
                                                             </div>
+
                                                         </div>
-                                                        <div class="form-group position-relative has-icon-left mb-4">
-                                                            <input type="text" class="form-control form-control-xl"
-                                                                name="pass" data-th-field="*{pass}"
-                                                                placeholder="Password">
-                                                            <div class="form-control-icon">
-                                                                <i class="bi bi-shield-lock"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group position-relative has-icon-left mb-4">
-                                                            <input type="text" class="form-control form-control-xl"
-                                                                name="tipo_usu" data-th-field="*{tipo_usu}"
-                                                                placeholder="Username">
-                                                            <div class="form-control-icon">
-                                                                <i class="bi bi-person"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 d-flex justify-content-lg-start">
-                                                            <button type="submit"
-                                                                class="btn btn-primary me-1 mb-1">Submit</button>
-                                                            <button type="reset"
-                                                                class="btn btn-light-secondary me-1 mb-1">Reset</button>
-                                                        </div>
+                                                        <br>
+                                                        <p class="text-subtitle text-danger"
+                                                            data-th-if="${#fields.hasErrors('cant')}"
+                                                            data-th-errors="*{cant}">
+                                                        </p>
+
                                                     </div>
                                                 </div>
+                                                <div class="col-12 d-flex justify-content-lg-start">
+                                                    <button type="submit"
+                                                        class="btn btn-primary me-1 mb-1">Submit</button>
+                                                    <button type="reset"
+                                                        class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                                </div>
                                             </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

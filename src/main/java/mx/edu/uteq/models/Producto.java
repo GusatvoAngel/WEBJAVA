@@ -45,5 +45,6 @@ public class Producto {
     public int cantidad_prod;
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_cat")
+    @NotNull
     public Categoria id_cat;
 }

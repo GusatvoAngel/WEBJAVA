@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import mx.edu.uteq.dto.UsuarioRegistroDTO;
 import mx.edu.uteq.models.Usuario;
 import mx.edu.uteq.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,38 +36,46 @@ public class ControllerUsuario {
 
     @GetMapping("admin/usuario/")
     public String listaUsuarios(Model model) {
-        List<Usuario> usuarios = usuarioService.listarUsuario();
+        List<Usuario> usuarios = usuarioService.listarUsuarios();
         model.addAttribute("usuarios", usuarios);
         return "admin/usuarios";
     }
 
     @GetMapping("admin/agregarUsuario/")
     public String agregarUsuarioPage(Usuario usuario) {
-        return "admin/modificarUsuario";
+        return "admin/agregarUsuario";
     }
 
     @PostMapping("admin/agregarUsuario/")
-    public String agregarUsuarios(@Valid Usuario usuario, Errors error) {
+    public String agregarUsuarios(@Valid UsuarioRegistroDTO registroDTO, Errors error) {
         if (error.hasErrors()) {
             return "admin/modificarUsuario";
         }
-        usuarioService.guardar(usuario);
+        usuarioService.guardar(registroDTO);
         return "redirect:/admin/usuario/";
     }
+
+    @PostMapping("admin/editarUsuario/")
+    public String editarUsuarios(@Valid Usuario usuario, Errors error) {
+        if (error.hasErrors()) {
+            return "admin/modificarUsuario";
+        }
+        usuarioService.guardarv2(usuario);
+        return "redirect:/admin/usuario/";
+    }
+//    @PostMapping("admin/agregarUsuario/")
+//    public String agregarUsuarios(@Valid UsuarioRegistroDTO registroDTO, Errors error) {
+//        if (error.hasErrors()) {
+//            return "admin/modificarUsuario";
+//        }
+//        usuarioService.guardar(registroDTO);
+//        return "redirect:/admin/usuario/";
+//    }
 
     @GetMapping("/admin/editarUsuario/{id_usu}")
     public String editarUsuarios(Usuario usuario, Model model) {
         usuario = usuarioService.encontrarUsuario(usuario);
         model.addAttribute("usuario", usuario);
-        return "admin/modificarUsuario";
-    }
-
-    @GetMapping("/admin/login/{correo_usu}/{pass}")
-    public String buscarUsuarios(@PathVariable String correo_usu, @PathVariable String pass, Usuario usuario, Model model) {
-//        String correo_usu = pathVarsMap.get("correo_usu");
-//        String pass = pathVarsMap.get("pass");
-        Optional<Usuario> resultado = usuarioService.findByCorreo("gus@live.com");
-        model.addAttribute("usuario", resultado);
         return "admin/modificarUsuario";
     }
 
@@ -86,50 +95,5 @@ public class ControllerUsuario {
     public String usuario(Model model) {
         model.addAttribute("nombre", "Hola desde Controlador Inicio");
         return "redirect:/usuario/";
-    }
-
-    @GetMapping("usuario/about.html")
-    public String about(Model model) {
-        return "cliente/about";
-    }
-
-    @GetMapping("usuario/service.html")
-    public String service(Model model) {
-        return "cliente/service";
-    }
-
-    @GetMapping("usuario/menu.html")
-    public String menu(Model model) {
-        return "cliente/menu";
-    }
-
-    @GetMapping("usuario/booking.html")
-    public String booking(Model model) {
-        return "cliente/booking.html";
-    }
-
-    @GetMapping("usuario/team.html")
-    public String team(Model model) {
-        return "cliente/team";
-    }
-
-    @GetMapping("usuario/testimonial.html")
-    public String testimonial(Model model) {
-        return "cliente/testimonial";
-    }
-
-    @GetMapping("usuario/contact.html")
-    public String contact(Model model) {
-        return "cliente/contact";
-    }
-
-    @GetMapping("usuario/index.html")
-    public String index(Model model) {
-        return "cliente/index";
-    }
-
-    @GetMapping("admin/")
-    public String pageAdmin(Model model) {
-        return "redirect:/admin/producto/";
     }
 }

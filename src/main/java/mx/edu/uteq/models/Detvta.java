@@ -28,16 +28,16 @@ public class Detvta {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long id_dv;
+    public Long id_dv;
+
     @ManyToOne(optional=false)
-    @JoinColumn(name="id_vta")
-    
+    @JoinColumn(name="id_vta")  
     public Ventas id_vta;
+
     @ManyToOne(optional=false)
-    @JoinColumn(name="id_prod")
-    
+    @JoinColumn(name="id_prod")    
     public Producto id_prod;
-    @NotEmpty
+
     @Min(value = 0, message = "La cantida mínimo es 0")
-    public int cant_pdin;
+    public int cant;
 }

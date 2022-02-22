@@ -50,7 +50,7 @@ public class ControllerProducto {
     public String agregarProductoPage(Producto producto, Model model) {
         List<Categoria> categoria = categoriaService.listarCategoria();
         model.addAttribute("categoria2", categoria);
-        return "admin/agregarProducto";
+        return "/admin/agregarProducto";
     }
 
     @PostMapping("admin/agregarProducto/")
