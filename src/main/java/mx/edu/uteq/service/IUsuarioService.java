@@ -6,17 +6,17 @@
 package mx.edu.uteq.service;
 
 import java.util.List;
-import java.util.Optional;
 import mx.edu.uteq.models.Usuario;
-
+import mx.edu.uteq.dto.UsuarioRegistroDTO;
+import org.springframework.security.core.userdetails.UserDetailsService;
 /**
  *
  * @author usuario
  */
-public interface IUsuarioService {
-    public List<Usuario> listarUsuario(); 
-    public Optional<Usuario> findByCorreo(String correo);
-    public void guardar(Usuario usuario); 
+public interface IUsuarioService extends UserDetailsService{
+    public Usuario guardar(UsuarioRegistroDTO registroDTO);
+    public List<Usuario> listarUsuarios();
     public void eliminar(Usuario usuario); 
     public Usuario encontrarUsuario(Usuario usuario);
+    public void guardarv2(Usuario usuario);
 }

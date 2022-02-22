@@ -55,7 +55,7 @@
                                 <span>Producto</span>
                             </a>
                         </li>
-                        <li class="sidebar-item active ">
+                        <li class="sidebar-item  ">
                             <a th:href="@{/admin/usuario/}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Usuario</span>
@@ -67,7 +67,7 @@
                                 <span>Ventas</span>
                             </a>
                         </li>
-                        <li class="sidebar-item  ">
+                        <li class="sidebar-item active">
                             <a th:href="@{/admin/detvta/}" class='sidebar-link'>
                                 <i class="bi bi-file-earmark-spreadsheet-fill"></i>
                                 <span>Detalle Venta</span>
@@ -89,42 +89,41 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>DataTable</h3>
-                            <p class="text-subtitle text-muted"></p>
-                        </div>
-                        <div class="col-12 col-md-6 order-md-2 order-first">
-                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">DataTable</li>
-                                </ol>
-                            </nav>
+                            <h3>Tabla de datos
+                            </h3>
+                            <p class="text-subtitle text-muted">
+
+                            </p>
                         </div>
                     </div>
                 </div>
                 <section class="section">
                     <div class="card">
                         <div class="card-header">
-                            Usuario
-                            <p class="text-subtitle text-muted"><a data-th-href="@{/admin/agregarUsuario/}">Agregar</a></p>
+                            Detalle Venta
+                            <p class="text-subtitle text-muted"><a data-th-href="@{/admin/agregarDetvta/}">Agregar</a></p>
+
                         </div>
                         <div class="card-body">
                             <table class="table table-striped" id="table1">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nombre</th>
-                                        <th>Tipo Usu</th>
+                                        <th>Venta</th>
+                                        <th>Producto</th>
+                                        <th>Cantidad</th>
                                         <th>Estatus</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr data-th-each="usuarios:${usuarios}">
-                                        <td data-th-text="${usuarios.id_usu}"></td>
-                                        <td data-th-text="${usuarios.nom_usu}"></td>
-                                        <td data-th-text="${usuarios.tipo_usu}"></td>
+                                    <tr data-th-each="detvta:${detvta}">
+                                        <td data-th-text="${detvta.id_dv}"></td>
+                                        <td data-th-text="${detvta.id_vta.id_vta}"></td>
+                                        <td data-th-text="${detvta.id_prod.nom_prod}"></td>
+                                        <td data-th-text="${detvta.cant}"></td>
                                         <td><span class="badge bg-success">Active</span></td>
-                                        <td><a class="badge bg-secondary" th:href="@{/admin/editarUsuario/}+${usuarios.id_usu}">Editar</a></td>
+                                        <td><a class="badge bg-secondary" th:href="@{/admin/editarDetvta/}+${detvta.id_dv}">Editar</a></td>
                                     </tr>
 
                                 </tbody>

@@ -46,7 +46,7 @@ public class ControllerVentas {
 
     @GetMapping("admin/agregarVentas/")
     public String agregarVentasPage(Ventas ventas, Model model) {
-        List<Usuario> usuarios = iUsuarioService.listarUsuario();
+        List<Usuario> usuarios = iUsuarioService.listarUsuarios();
         model.addAttribute("usuarios2", usuarios);
         return "/admin/agregarVentas";
     }
@@ -54,7 +54,7 @@ public class ControllerVentas {
     @PostMapping("admin/agregarVentas/")
     public String agregarVentas(@Valid Ventas ventas, Errors error, Model model) {
         if (error.hasErrors()) {
-            List<Usuario> usuarios = iUsuarioService.listarUsuario();
+            List<Usuario> usuarios = iUsuarioService.listarUsuarios();
             model.addAttribute("usuarios2", usuarios);
             return "admin/agregarVentas";
         }
@@ -66,7 +66,7 @@ public class ControllerVentas {
     public String editarVentas(Ventas ventas, Model model) {
         ventas = ventasService.encontrarVentas(ventas);
         model.addAttribute("ventas", ventas);
-        List<Usuario> usuarios = iUsuarioService.listarUsuario();
+        List<Usuario> usuarios = iUsuarioService.listarUsuarios();
         model.addAttribute("usuario", usuarios);
         return "admin/modificarVentas";
     }
