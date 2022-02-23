@@ -22,47 +22,59 @@
                     <div class="auth-logo">
                         <a href="index.html"><img th:src="@{/assets/admin/assets/images/logo/logo.png}" alt="Logo"></a>
                     </div>
-                    <h1 class="auth-title">Sign Up</h1>
-                    <p class="auth-subtitle mb-5">Input your data to register to our website.</p>
+                    <h1 class="auth-title">Registro</h1>
+                    <p class="auth-subtitle mb-5">Ingrese sus datos para registrarse en nuestro sitio web.</p>
 
                     <form th:action="@{/registro}" method="POST" data-th-object="${usuario}">
 
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="email" class="form-control form-control-xl" name="correo"
+                            <input required type="email" class="form-control form-control-xl" name="correo"
                                 data-th-field="*{correo}" placeholder="Email">
                             <div class="form-control-icon">
                                 <i class="bi bi-envelope"></i>
                             </div>
                         </div>
+                        <p class="text-subtitle text-danger" data-th-if="${#fields.hasErrors('correo')}"
+                            data-th-errors="*{correo}">
+                        </p>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="nom_usu"
+                            <input required type="text" class="form-control form-control-xl" name="nom_usu"
                                 data-th-field="*{nom_usu}" placeholder="Username">
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
                         </div>
+                        <p class="text-subtitle text-danger" data-th-if="${#fields.hasErrors('nom_usu')}"
+                            data-th-errors="*{nom_usu}">
+                        </p>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="password" class="form-control form-control-xl" name="pass"
+                            <input required type="password" class="form-control form-control-xl" name="pass"
                                 data-th-field="*{pass}" placeholder="Password">
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
                         </div>
+                        <p class="text-subtitle text-danger" data-th-if="${#fields.hasErrors('pass')}"
+                            data-th-errors="*{pass}">
+                        </p>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" name="tipo_usu"
+                            <input required type="text" class="form-control form-control-xl" name="tipo_usu"
                                 data-th-field="*{tipo_usu}" placeholder="Username">
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
                         </div>
-                        <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
+                        <p class="text-subtitle text-danger" data-th-if="${#fields.hasErrors('tipo_usu')}"
+                            data-th-errors="*{tipo_usu}">
+                        </p>
+                        <div class="col-12 d-flex justify-content-lg-start">
+                            <button type="submit" class="btn btn-primary me-1 mb-1">Registrar</button>
+                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                        </div>
 
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
-                        <p class="text-gray-600">Don't have an account? <a th:href="@{/auth-register.html}"
-                                class="font-bold">Sign
-                                up</a>.</p>
-                        <p><a class="font-bold" th:href="@{/auth-forgot-password.html}">Forgot password?</a>.</p>
+                        <p class="text-gray-600">Regresar <a th:href="@{/login}" class="font-bold">login</a>.</p>
                     </div>
                 </div>
             </div>

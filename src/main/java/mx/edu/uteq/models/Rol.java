@@ -31,6 +31,9 @@ public class Rol {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_rol;
 
+    @NotEmpty
+    @NotNull(message = "Debes especificar el nombre")
+    @Size(min = 1, max = 50, message = "El nombre debe medir entre 1 y 50")
     private String nombre;
 
     public Long getId_rol() {
@@ -56,13 +59,12 @@ public class Rol {
     }
 
     public Rol() {
-        
+
     }
 
     public Rol(String nombre) {
         super();
         this.nombre = nombre;
     }
-    
 
 }

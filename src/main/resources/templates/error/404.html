@@ -21,7 +21,7 @@
                 <img class="img-error" th:src="@{/assets/admin/assets/images/samples/error-404.png}" alt="Not Found">
                 <div class="text-center">
                     <h4 th:text="${error}">Internal Server Error</h4>
-                    <a href="index.html" class="btn btn-lg btn-outline-primary mt-3">Go Home</a>
+                    <a th:href="@{/admin/}" class="btn btn-lg btn-outline-primary mt-3">Ir la inicio</a>
                 </div>
             </div>
         </div>

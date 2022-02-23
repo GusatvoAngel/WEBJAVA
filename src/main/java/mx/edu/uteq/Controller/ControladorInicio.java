@@ -26,9 +26,9 @@ public class ControladorInicio {
         return "auth-login";
     }
     
-   @GetMapping("/admin")
-   public String Admin(Model modelo){
-        modelo.addAttribute("usuarios", IUsuarioService.listarUsuarios());
-        return "admin";
-   }
+//   @GetMapping("/admin")
+//   public String Admin(Model modelo){
+//        modelo.addAttribute("usuarios", IUsuarioService.listarUsuarios());
+//        return "admin";
+//   }
 }
