@@ -79,7 +79,7 @@ public class UsuarioServiceImp implements IUsuarioService {
         return usuarioRepositorio.findById(usuario.getId_usu()).orElse(null);
 
     }
-
+   
     @Override
     public void guardarv2(Usuario usuario) {
          usuario = new Usuario(usuario.getId_usu(),usuario.getCorreo(),
@@ -88,5 +88,11 @@ public class UsuarioServiceImp implements IUsuarioService {
                 usuario.getTipo_usu());
          usuarioRepositorio.save(usuario);
     }
+
+//    @Override
+//    public Usuario recuperarPass(String correo, String nom_usu) {
+//      return  usuarioRepositorio.findByCorreoAndNom_usu(correo, nom_usu);
+//        
+//    }
 
 }

@@ -5,15 +5,26 @@
  */
 package mx.edu.uteq.dto;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class UsuarioRegistroDTO {
 
     private long id_usu;
-    
+
     private String correo;
 
     private String nom_usu;
-
+    
     private String pass;
+
 
     private String tipo_usu;
 
@@ -66,9 +77,6 @@ public class UsuarioRegistroDTO {
 
     public UsuarioRegistroDTO() {
     }
-
-    
-
 
 }
 

@@ -37,13 +37,25 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_usu;
 
+    @NotEmpty
+    @NotNull(message = "Debes especificar el nombre")
+    @Size(min = 1, max = 50, message = "El nombre debe medir entre 1 y 50")
     private String correo;
 
+    @NotEmpty
+    @NotNull(message = "Debes especificar el nombre")
+    @Size(min = 1, max = 50, message = "El nombre debe medir entre 1 y 50")
     @Column(name = "nom_usu")
     private String nom_usu;
 
+    @NotEmpty
+    @NotNull(message = "Debes especificar el nombre")
+    @Size(min = 1, max = 100, message = "El nombre debe medir entre 1 y 50")
     private String pass;
 
+    @NotEmpty
+    @NotNull(message = "Debes especificar el nombre")
+    @Size(min = 1, max = 50, message = "El nombre debe medir entre 1 y 50")
     @Column(name = "tipo_usu")
     private String tipo_usu;
 
@@ -127,10 +139,12 @@ public class Usuario {
         this.tipo_usu = tipo_usu;
     }
 
+    public Usuario(String correo, String nom_usu) {
+        this.correo = correo;
+        this.nom_usu = nom_usu;
+    }
 
     public Usuario() {
     }
-
-    
 
 }

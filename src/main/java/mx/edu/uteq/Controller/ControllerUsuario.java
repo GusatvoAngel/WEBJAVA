@@ -47,9 +47,9 @@ public class ControllerUsuario {
     }
 
     @PostMapping("admin/agregarUsuario/")
-    public String agregarUsuarios(@Valid UsuarioRegistroDTO registroDTO, Errors error) {
+    public String agregarUsuarios(@Valid UsuarioRegistroDTO registroDTO, Errors error,Model model) {
         if (error.hasErrors()) {
-            return "admin/modificarUsuario";
+            return "admin/agregarUsuario";
         }
         usuarioService.guardar(registroDTO);
         return "redirect:/admin/usuario/";
@@ -63,14 +63,6 @@ public class ControllerUsuario {
         usuarioService.guardarv2(usuario);
         return "redirect:/admin/usuario/";
     }
-//    @PostMapping("admin/agregarUsuario/")
-//    public String agregarUsuarios(@Valid UsuarioRegistroDTO registroDTO, Errors error) {
-//        if (error.hasErrors()) {
-//            return "admin/modificarUsuario";
-//        }
-//        usuarioService.guardar(registroDTO);
-//        return "redirect:/admin/usuario/";
-//    }
 
     @GetMapping("/admin/editarUsuario/{id_usu}")
     public String editarUsuarios(Usuario usuario, Model model) {
@@ -79,21 +71,81 @@ public class ControllerUsuario {
         return "admin/modificarUsuario";
     }
 
+//    @GetMapping("/admin/recuperarContrasena/{correo}/{nom_usu}")
+//    public String recuperarContrasena(@RequestParam Map<String, String> requestParams, Model model) {
+//        String correo = requestParams.get("correo");
+//        String nom_usu = requestParams.get("nom_usu");
+//        usuario = usuarioService.recuperarPass(correo,nom_usu);
+//        model.addAttribute("usuario", usuario);
+//        return "admin/modificarUsuario";
+//    }
     @GetMapping("admin/borrar/{idUsuario}")
     public String borrarUsuarios(Usuario usuario) {
         usuarioService.eliminar(usuario);
         return "admin/table-datatable";
     }
 
-    @RequestMapping("usuario/")
-    public String page(Model model) {
-        model.addAttribute("nombre", "Hola desde Controlador Inicio");
+    @GetMapping("usuario/about.html")
+    public String about(Model model) {
+        return "cliente/about";
+    }
+
+    @GetMapping("usuario/service.html")
+    public String service(Model model) {
+        return "cliente/service";
+    }
+
+    @GetMapping("usuario/busqueda.html")
+    public String menu(Model model) {
+        return "cliente/busqueda";
+    }
+
+    @GetMapping("usuario/booking.html")
+    public String booking(Model model) {
+        return "cliente/booking.html";
+    }
+
+    @GetMapping("usuario/team.html")
+    public String team(Model model) {
+        return "cliente/team";
+    }
+
+    @GetMapping("usuario/testimonial.html")
+    public String testimonial(Model model) {
+        return "cliente/testimonial";
+    }
+
+    @GetMapping("usuario/contact.html")
+    public String contact(Model model) {
+        return "cliente/contact";
+    }
+
+    @GetMapping("usuario/index.html")
+    public String index(Model model) {
         return "cliente/index";
     }
 
-    @RequestMapping("/")
-    public String usuario(Model model) {
-        model.addAttribute("nombre", "Hola desde Controlador Inicio");
-        return "redirect:/usuario/";
+    @GetMapping("usuario/login.html")
+    public String login(Model model) {
+        return "redirect:/login";
+    }
+    
+    @GetMapping("usuario/registro.html")
+    public String registro(Model model) {
+        return "redirect:/registro";
+    }
+    
+    @GetMapping("admin/")
+    public String pageAdmin(Model model) {
+        return "redirect:/admin/producto/";
+    }
+
+    @GetMapping("usuario/")
+    public String pageUsuario(Model model) {
+        return "cliente/index";
+    }
+     @GetMapping("/recuperar")
+    public String pageRecuUsuario(Model model) {
+        return "auth-forgot-password";
     }
 }

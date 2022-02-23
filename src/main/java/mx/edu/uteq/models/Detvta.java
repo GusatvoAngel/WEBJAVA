@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Data;
 
@@ -35,7 +36,8 @@ public class Detvta {
     public Ventas id_vta;
 
     @ManyToOne(optional=false)
-    @JoinColumn(name="id_prod")    
+    @JoinColumn(name="id_prod")   
+    @NotNull
     public Producto id_prod;
 
     @Min(value = 0, message = "La cantida mínimo es 0")

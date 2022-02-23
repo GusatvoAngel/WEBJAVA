@@ -5,6 +5,7 @@
  */
 package mx.edu.uteq.dao;
 
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import mx.edu.uteq.models.Usuario;
 import org.springframework.stereotype.Repository;
@@ -17,5 +18,4 @@ import org.springframework.stereotype.Repository;
 public interface IUsuarioDao extends JpaRepository<Usuario, Long> {
 
     public Usuario findByCorreo(String correo);
-
 }

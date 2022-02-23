@@ -23,7 +23,7 @@
                     <h1 class="error-title"><span th:text="${error}"></span> - <span th:text="${status}"></span></h1>
                     <span th:text="${message}">Message</span><br/> 
                     <span th:text="${exception}">Trace </span><br/>
-                    <a href="index.html" class="btn btn-lg btn-outline-primary mt-3">Go Home</a>
+                    <a th:href="@{/admin/}" class="btn btn-lg btn-outline-primary mt-3">Go Home</a>
                 </div>
             </div>
         </div>
